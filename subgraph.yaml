@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb"
       abi: MorphoBlue
-      startBlock: 18883124
+      startBlock: 9304957
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -96,7 +96,7 @@ dataSources:
     source:
       address: "0xa9c3d3a366466fa809d1ae982fb2c46e5fc41101"
       abi: MetaMorphoFactory
-      startBlock: 18925584
+      startBlock: 9304957
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
