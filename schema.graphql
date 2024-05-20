@@ -13,6 +13,7 @@ enum Network {
   COSMOS
   CRONOS
   MAINNET # Ethereum Mainnet
+  BASE_SEPOLIA
   FANTOM
   FUSE
   HARMONY
@@ -947,7 +948,6 @@ type Market @entity @regularPolling {
 
   totalCollateral: BigInt!
 
-
   totalSupplyShares: BigInt!
   totalBorrowShares: BigInt!
 
@@ -1366,8 +1366,6 @@ type Account @entity @regularPolling {
   metaMorphoWithdraw: [MetaMorphoWithdraw!]! @derivedFrom(field: "account")
   metaMorphoTransferFrom: [MetaMorphoTransfer!]! @derivedFrom(field: "from")
   metaMorphoTransferTo: [MetaMorphoTransfer!]! @derivedFrom(field: "to")
-
-
 }
 
 # A position is defined as who has control over the collateral or debt
@@ -1992,8 +1990,7 @@ type _FlashLoanPremium @entity {
   premiumRateToProtocol: BigDecimal!
 }
 
-
-type _ChainlinkProxy  @entity {
+type _ChainlinkProxy @entity {
   id: Bytes!
   proxy: Bytes!
   isUSD: Boolean!
@@ -2021,7 +2018,6 @@ type BadDebtRealization @entity {
 }
 
 ########### METAMORPHO ENTITIES ############
-
 
 type MetaMorpho @entity {
   id: Bytes!
@@ -2090,14 +2086,14 @@ type MetaMorphoMarket @entity {
   isInSupplyQueue: Boolean!
   isInWithdrawQueue: Boolean!
   pendingCaps: [PendingCap!]! @derivedFrom(field: "metaMorphoMarket")
-#  TODO: add position
+  #  TODO: add position
 }
 
 enum PendingValueStatus {
-    PENDING
-    ACCEPTED
-    REJECTED
-    OVERRIDDEN
+  PENDING
+  ACCEPTED
+  REJECTED
+  OVERRIDDEN
 }
 
 type PendingTimelock @entity {
@@ -2130,7 +2126,7 @@ type PendingGuardian @entity {
 }
 enum QueueType {
   SUPPLY_QUEUE
-    WITHDRAW_QUEUE
+  WITHDRAW_QUEUE
 }
 type NewQueue @entity {
   id: Bytes!
@@ -2154,8 +2150,10 @@ type MetaMorphoPosition @entity {
   lastAssetsBalanceUSD: BigDecimal
 
   deposits: [MetaMorphoDeposit!]! @derivedFrom(field: "metaMorphoPosition")
-  metaMorphoPositionFrom: [MetaMorphoTransfer!]! @derivedFrom(field: "metaMorphoPositionFrom")
-  metaMorphoPositionTo: [MetaMorphoTransfer!]! @derivedFrom(field: "metaMorphoPositionTo")
+  metaMorphoPositionFrom: [MetaMorphoTransfer!]!
+    @derivedFrom(field: "metaMorphoPositionFrom")
+  metaMorphoPositionTo: [MetaMorphoTransfer!]!
+    @derivedFrom(field: "metaMorphoPositionTo")
   # TODO: add closing and counter logic
 }
 
@@ -2165,7 +2163,6 @@ type MetaMorphoAllocator @entity {
   metaMorpho: MetaMorpho!
   isCurrentAllocator: Boolean!
 }
-
 
 type MetaMorphoDeposit @entity(immutable: true) {
   " { Transaction hash }{ Log index } "
@@ -2297,7 +2294,6 @@ type AllocatorSet @entity(immutable: true) {
   " Timestamp of this event "
   timestamp: BigInt!
 
-
   " Account that executed the transaction"
   accountActor: Account
 
@@ -2353,5 +2349,4 @@ type MetaMorphoTransfer @entity(immutable: true) {
   metaMorphoPositionTo: MetaMorphoPosition!
 
   metaMorpho: MetaMorpho!
-
 }

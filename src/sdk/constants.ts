@@ -21,6 +21,7 @@ export namespace Network {
   export const COSMOS = "COSMOS";
   export const CRONOS = "CRONOS";
   export const MAINNET = "MAINNET"; // Ethereum mainnet
+  export const BASE_SEPOLIA = "BASE_SEPOLIA"; // Ethereum mainnet
   export const FANTOM = "FANTOM";
   export const FUSE = "FUSE";
   export const HARMONY = "HARMONY";
