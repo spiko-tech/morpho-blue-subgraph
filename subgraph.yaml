@@ -54,6 +54,7 @@ dataSources:
           file: ./abis/REth.json
 
       eventHandlers:
+        - event: BackupRetentionPeriodUpdated(uint32,uint32)
         - event: AccrueInterest(indexed bytes32,uint256,uint256,uint256)
           handler: handleAccrueInterest
         - event: Borrow(indexed bytes32,address,indexed address,indexed address,uint256,uint256)
